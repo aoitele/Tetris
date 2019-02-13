@@ -2,3 +2,14 @@ h1 {
   font-size: 50px;
   color: blue;
 }
+#app {
+  width: 800px;
+  height: 1200px;
+  background-color: #0f0f0f;
+  border: solid 2px #a9a9a9;
+}
+#next {
+  font-family: monospace;
+  font-size: 30px;
+  color: darkturquoise;
+}

@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/aoitele/Tetris#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "prettier": "^1.16.4"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
