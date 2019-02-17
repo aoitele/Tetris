@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>tetris</title>
   </head>
   <body>
     <h1>tetris GAME</h1>
-    <div id="user">user: { @username }</div>
+    <div id="user"></div>
     <!-- 盤面を表示する場所 -->
     <div id="next">
       next
@@ -17,7 +16,22 @@
     </div>
     <div id="app"></div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
+      // フィールド情報取得とDOM操作
+      const render = field => {
+        $('#app').empty();
+        let html = '';
+        field.forEach(column => {
+          html += `<div class="column">`;
+          column.forEach(block => {
+            html += `<div class="block" />`;
+          });
+          html += `</div>`;
+        });
+        $('#app').append(html);
+      };
+
       // ユーザー登録済み？
       const user = localStorage.getItem('user');
       if (user === null) {
@@ -33,22 +47,12 @@
         $('#send').on('click', function() {
           let name = $('#name').val();
           localStorage.setItem('user', name);
-          console.log('Hi ' + name);
           $('#name').val('');
           location.reload();
         });
       } else {
-        gamePlaying();
-      }
-
-      const render = field => {
-        console.log('continue...');
-      };
-
-      function gamePlaying() {
-        return setInterval(() => {
-          $.getJSON('/field', render);
-        }, 1000);
+        $('#user').append('user:' + user);
+        $.getJSON('/field', render);
       }
     </script>
   </body>
