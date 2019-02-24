@@ -1,5 +1,5 @@
 // ゲームの状態を入れる配列
-const field = [];
+let field = [];
 const row = 20;
 const column = 10;
 

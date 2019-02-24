@@ -11,7 +11,7 @@ const colorlist = {
 
 // ブロック7パターンを定義
 // prettier-ignore
-const block = [
+const pattern = [
   { b0, b1:{x:b0.x+1, y:b0.y }, b2:{x:b0.x+2, y:b0.y }, b3:{x:b0.x+3, y:b0.y }, color:"lightblue" },
   { b0, b1:{x:b0.x, y:b0.y+1 }, b2:{x:b0.x+1, y:b0.y }, b3:{x:b0.x+2, y:b0.y }, color:"blue" },
   { b0, b1:{x:b0.x+1, y:b0.y }, b2:{x:b0.x+2, y:b0.y }, b3:{x:b0.x+2, y:b0.y+1 }, color:"orange" },
@@ -23,9 +23,9 @@ const block = [
 
 module.exports = {
   createBlock() {
-    num = Math.floor(Math.random() * block.length);
-    const pattern = block[num];
-    return pattern;
+    num = Math.floor(Math.random() * pattern.length);
+    const block = pattern[num];
+    return block;
   }
   //   judgeCollision();
 };

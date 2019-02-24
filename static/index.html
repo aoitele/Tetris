@@ -7,15 +7,17 @@
     <title>tetris</title>
   </head>
   <body>
-    <h1>tetris GAME</h1>
-    <div id="user"></div>
-    <!-- 盤面を表示する場所 -->
-    <div id="next">
-      next
-      <div id="nextblock"></div>
+    <div id="wrapper">
+      <h1>tetris GAME</h1>
+      <div id="user"></div>
+      <!-- 盤面を表示する場所 -->
+      <div id="next">
+        next
+        <div id="nextblock"></div>
+      </div>
+      <div id="app"></div>
+      <button id="create">ゲームスタート</button>
     </div>
-    <div id="app"></div>
-    <button id="create">ブロック作成</button>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
@@ -57,34 +59,20 @@
         $.getJSON('/field', render);
       }
 
+      let response = {};
       async function Sendblock() {
-        // await setInterval(() => {
-        $.getJSON('/block', setBlock);
-        // }, 2000);
-      }
-
-      function setBlock(pattern) {
-        $('.block').css('background-color', 'black');
-        // console.log(pattern, 'pattern');
-        color = pattern.color;
-        // prettier-ignore
-        $('.block.' + pattern.b0.x + pattern.b0.y).css('background-color', color);
-        $('.block.' + pattern.b1.x + pattern.b1.y).css(
-          'background-color',
-          color
+        await setInterval(() => {
+          // prettier-ignore
+          $.getJSON('/block', response, block => {
+            $('.block').css({ 'background-color':'black' });
+            $('.block.' + block.b0.x + block.b0.y).css({'background-color':block.color });
+            $('.block.' + block.b1.x + block.b1.y).css({'background-color':block.color });
+            $('.block.' + block.b2.x + block.b2.y).css({'background-color':block.color });
+            $('.block.' + block.b3.x + block.b3.y).css({'background-color':block.color });
+            response = block
+          }
         );
-        $('.block.' + pattern.b2.x + pattern.b2.y).css(
-          'background-color',
-          color
-        );
-        $('.block.' + pattern.b3.x + pattern.b3.y).css(
-          'background-color',
-          color
-        );
-      }
-
-      function blockFall() {
-        // console.log('fall...');
+        }, 1000);
       }
 
       $('#create').on('click', create => Sendblock());
