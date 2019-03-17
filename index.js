@@ -4,6 +4,7 @@ app.use(express.static('static'));
 const bodyParser = require('body-parser');
 const { createField, getField } = require('./api/field.js');
 const { createBlock } = require('./api/block.js');
+const { emptyField } = require('./api/util/emptyField.js');
 
 // app.use(require('./api/block.js'));
 
