@@ -27,5 +27,4 @@ module.exports = {
     const block = pattern[num];
     return block;
   }
-  //   judgeCollision();
 };
