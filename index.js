@@ -7,12 +7,14 @@ const { createBlock } = require('./api/block.js');
 const { emptyField } = require('./api/util/emptyField.js');
 
 // app.use(require('./api/block.js'));
+let field;
 
 app.get('/', (req, res) => {});
 
 app.get('/field', (req, res) => {
-  if (getField().length !== 0) {
-    res.json(getField());
+  field = getField();
+  if (field.length !== 0) {
+    res.json(field);
   } else {
     res.json(createField());
   }
@@ -31,6 +33,7 @@ app.get('/block', (req, res) => {
     };
     res.json(block);
   } else {
+    const emptyfield = emptyField(field);
     res.json(createBlock());
   }
 });
